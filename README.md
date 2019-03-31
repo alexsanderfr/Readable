@@ -1,4 +1,4 @@
-# MyReads
+# Readable
 This is the Readable app for Udacity's React Developer Nanodegree
 
 ### Prerequisites
