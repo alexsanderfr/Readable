@@ -1,7 +1,9 @@
 import { getAll } from '..../api-server/categories'
-const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
+import { token } from '../utils/helpers'
 
-export function receiveCategories (categories) {
+export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
+
+export function receiveCategories(categories) {
     return {
         type: RECEIVE_CATEGORIES,
         categories
@@ -10,9 +12,9 @@ export function receiveCategories (categories) {
 
 export function handleReceiveCategories() {
     return (dispatch) => {
-        return getAll()
-        .then(({categories}) => {
-            dispatch(receiveCategories(categories))
-        })
+        return getAll(token)
+            .then(({ categories }) => {
+                dispatch(receiveCategories(categories))
+            })
     }
 }
