@@ -124,7 +124,7 @@ export function incrementPostCommentCounter(id, count) {
 
 export function handleIncrementPostCommentCounter(id, count) {
     return (dispatch) => {
-        return edit(token, id, count)
+        return incrementCommentCounter(token, id, count)
             .then(() => dispatch(incrementPostCommentCounter(id, count)))
     }
 }
