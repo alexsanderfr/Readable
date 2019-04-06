@@ -1,6 +1,6 @@
 import {
     RECEIVE_POSTS, RECEIVE_POST, RECEIVE_POSTS_BY_CATEGORY, ADD_POST,
-    VOTE_POST, DISABLE_POST, EDIT_POST, INCREMENT_POST_COMMENT_COUNTER
+    VOTE_POST, DISABLE_POST, EDIT_POST
 } from '../actions/posts'
 
 export default function posts(state = {}, action) {
@@ -39,14 +39,6 @@ export default function posts(state = {}, action) {
             return {
                 ...state,
                 [action.post.id]: action.post
-            }
-        case INCREMENT_POST_COMMENT_COUNTER:
-            return {
-                ...state,
-                [action.id]: {
-                    ...state[action.id],
-                    count: action.count
-                }
             }
         default:
             return state

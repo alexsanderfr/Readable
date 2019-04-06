@@ -1,15 +1,14 @@
-import { get, getByParent, add, vote, disableByParent, disable, edit } from '..../api-server/comments'
-import { token } from '../utils/helpers'
+import { getComment, getCommentsByParent, addComment, voteComment,
+    disableComment, editComment } from '../utils/api'
 
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT"
 export const RECEIVE_COMMENTS_BY_PARENT = "RECEIVE_COMMENTS_BY_PARENT"
 export const ADD_COMMENT = "ADD_COMMENT"
 export const VOTE_COMMENT = "VOTE_COMMENT"
 export const DISABLE_COMMENT = "DISABLE_COMMENT"
-export const DISABLE_COMMENT_BY_PARENT = "DISABLE_COMMENT_BY_PARENT"
 export const EDIT_COMMENT = "EDIT_COMMENT"
 
-export function receiveComment(comment) {
+export function receiveCommentAction(comment) {
     return {
         type: RECEIVE_COMMENT,
         comment,
@@ -18,14 +17,14 @@ export function receiveComment(comment) {
 
 export function handleReceiveComment(id) {
     return (dispatch) => {
-        return get(token, id)
+        return getComment(id)
             .then((comment) => {
-                dispatch(receiveComment(comment))
+                dispatch(receiveCommentAction(comment))
             })
     }
 }
 
-export function receiveCommentsByParent(comments) {
+export function receiveCommentsByParentAction(comments) {
     return {
         type: RECEIVE_COMMENTS_BY_PARENT,
         comments,
@@ -34,14 +33,14 @@ export function receiveCommentsByParent(comments) {
 
 export function handleReceiveCommentsByParent(parentId) {
     return (dispatch) => {
-        return getByParent(token, parentId)
+        return getCommentsByParent(parentId)
             .then((comments) => {
-                dispatch(receiveComment(comments))
+                dispatch(receiveCommentAction(comments))
             })
     }
 }
 
-export function addComment(comment) {
+export function addCommentAction(comment) {
     return {
         type: ADD_COMMENT,
         comment
@@ -50,12 +49,12 @@ export function addComment(comment) {
 
 export function handleAddComment(comment) {
     return (dispatch) => {
-        return add(token, comment)
-            .then((comment) => dispatch(addComment(comment)))
+        return addComment(comment)
+            .then((comment) => dispatch(addCommentAction(comment)))
     }
 }
 
-export function voteComment(comment) {
+export function voteCommentAction(comment) {
     return {
         type: VOTE_COMMENT,
         comment
@@ -64,12 +63,12 @@ export function voteComment(comment) {
 
 export function handleVoteComment(id, option) {
     return (dispatch) => {
-        return vote(token, id, option)
-            .then((comment) => dispatch(voteComment(comment)))
+        return voteComment(id, option)
+            .then((comment) => dispatch(voteCommentAction(comment)))
     }
 }
 
-export function disableComment(comment) {
+export function disableCommentAction(comment) {
     return {
         type: DISABLE_COMMENT,
         comment
@@ -78,26 +77,12 @@ export function disableComment(comment) {
 
 export function handleDisableComment(id) {
     return (dispatch) => {
-        return disable(token, id)
-            .then((comment) => dispatch(disableComment(comment)))
+        return disableComment(id)
+            .then((comment) => dispatch(disableCommentAction(comment)))
     }
 }
 
-export function disableCommentByParent(post) {
-    return {
-        type: DISABLE_COMMENT_BY_PARENT,
-        post
-    }
-}
-
-export function handleDisableCommentByParent(post) {
-    return (dispatch) => {
-        return disableByParent(token, post)
-            .then((post) => dispatch(disableCommentByParent(post)))
-    }
-}
-
-export function editComment(comment) {
+export function editCommentAction(comment) {
     return {
         type: EDIT_COMMENT,
         comment
@@ -106,7 +91,7 @@ export function editComment(comment) {
 
 export function handleEditComment(id, comment) {
     return (dispatch) => {
-        return edit(token, id, comment)
-            .then((comment) => dispatch(editComment(comment)))
+        return editComment(id, comment)
+            .then((comment) => dispatch(editCommentAction(comment)))
     }
 }
