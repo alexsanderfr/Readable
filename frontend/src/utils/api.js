@@ -1,6 +1,6 @@
 import { token } from '../utils/helpers'
 
-const api = "http://localhost:5001";
+const api = "http://localhost:3001";
 
 const headers = {
     Accept: "application/json",
@@ -10,8 +10,7 @@ const headers = {
 
 export const getCategories = () =>
     fetch(`${api}/categories`, { headers })
-        .then(res => res.json())
-        .then(data => data.categories);
+        .then(res => res.json());
 
 export const getPostsByCategory = (category) =>
     fetch(`${api}/${category}/posts`, { headers })
@@ -20,8 +19,9 @@ export const getPostsByCategory = (category) =>
 
 export const getPosts = () =>
     fetch(`${api}/posts`, { headers })
-        .then(res => res.json())
-        .then(data => data.json());
+        .then(res => res.json()
+
+        );
 
 export const addPost = (post) =>
     fetch(`${api}/posts`, {
