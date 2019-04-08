@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { handleReceivePosts } from '../actions/posts';
 import { handleReceiveCategories } from '../actions/categories';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Nav from './Nav';
+import Dashboard from './Dashboard'
+import Categories from './Categories'
 
 class App extends Component {
   componentDidMount() {
@@ -10,18 +14,17 @@ class App extends Component {
   }
 
   render() {
-    const posts = this.props.content
-    Object.entries(posts).map(([key, value]) => ( console.log(value)))
+
     return (
-      <div className="App">
-        <ul className='dashboard-list'>
-          {Object.entries(posts).map(([key, value]) => (
-            <li key={value.id}>
-              {value.title}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Router>
+        <Fragment>
+          <div className="App">
+            <Nav />
+            <Route path='/' exact component={Dashboard} />
+            <Route path='/categories' exact component={Categories} />
+          </div>
+        </Fragment>
+      </Router>
     );
   }
 }
