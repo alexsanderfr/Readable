@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 export default function Nav() {
     return (
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-default" >
             <div className="container-fluid">
-                <ul className="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     <li>
                         <NavLink to='/' exact activeClassName='active'>
                             Home

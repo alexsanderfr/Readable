@@ -6,13 +6,15 @@ class Categories extends Component {
         const categories = this.props.categories
         return (
             <div>
+                <ul className="list-group">
                 {Object.values(categories).map((value) => (
-                    <li key={value}>
+                    <li key={value} className="list-group-item">
                         <div>
                             <h3>{value.name}</h3>
                         </div>
                     </li>
                 ))}
+                </ul>
             </div>
         )
     }

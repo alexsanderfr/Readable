@@ -7,11 +7,13 @@ class Dashboard extends Component {
         const posts = this.props.postIds
         return (
             <div>
-                {Object.values(posts).map((value) => (
-                    <li key={value}>
-                        <Post id={value} />
-                    </li>
-                ))}
+                <ul className="list-group">
+                    {Object.values(posts).map((value) => (
+                        <li key={value}  className="list-group-item">
+                            <Post id={value} />
+                        </li>
+                    ))}
+                </ul>
             </div>
         )
     }
@@ -21,7 +23,7 @@ class Dashboard extends Component {
 function mapStateToProps({ posts }) {
     return {
         postIds: Object.keys(posts)
-        .sort((a,b) => posts[b].timestamp - posts[a].timestamp)
+            .sort((a, b) => posts[b].timestamp - posts[a].timestamp)
     }
 }
 
