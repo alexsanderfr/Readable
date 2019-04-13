@@ -1,3 +1,26 @@
 .active {
   font-weight: bold;
 }
+
+.content {
+  width: 75%;
+}
+
+.vote-buttons {
+  width: 25%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.like-icons {
+  font-size: 60px;
+  margin: 12px;
+}
+
+.btn-container {
+  margin: 12px;
+}

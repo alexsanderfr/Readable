@@ -5,7 +5,7 @@ export default function Nav() {
     return (
         <nav className="navbar navbar-default" >
             <div className="container-fluid">
-                <ul class="nav navbar-nav">
+                <ul className="nav navbar-nav">
                     <li>
                         <NavLink to='/' exact activeClassName='active'>
                             Home

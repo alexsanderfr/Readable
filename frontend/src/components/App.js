@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { handleReceivePosts } from '../actions/posts';
 import { handleReceiveCategories } from '../actions/categories';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
-import Dashboard from './Dashboard'
+import PostList from './PostList'
 import Categories from './Categories'
-import Category from './Category'
 
 
 class App extends Component {
@@ -19,14 +18,14 @@ class App extends Component {
 
     return (
       <Router>
-        <Fragment>
-          <div className="App">
-            <Nav />
-            <Route path='/' exact component={Dashboard} />
-            <Route path='/categories' exact component={Categories} />
-            <Route path='/:category' component={Category} />
-          </div>
-        </Fragment>
+        <div className="App">
+          <Nav />
+          <Switch>
+            <Route exact path='/' component={PostList} />
+            <Route exact path='/categories' component={Categories} />
+            <Route exact path='/:category' component={PostList} />
+          </Switch>
+        </div>
       </Router>
     );
   }
