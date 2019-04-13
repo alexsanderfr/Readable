@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Dashboard from './Dashboard'
 import Categories from './Categories'
+import Category from './Category'
+
 
 class App extends Component {
   componentDidMount() {
@@ -22,6 +24,7 @@ class App extends Component {
             <Nav />
             <Route path='/' exact component={Dashboard} />
             <Route path='/categories' exact component={Categories} />
+            <Route path='/:category' component={Category} />
           </div>
         </Fragment>
       </Router>

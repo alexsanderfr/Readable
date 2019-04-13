@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class Categories extends Component {
     render() {
@@ -7,13 +8,15 @@ class Categories extends Component {
         return (
             <div>
                 <ul className="list-group">
-                {Object.values(categories).map((value) => (
-                    <li key={value} className="list-group-item">
-                        <div>
-                            <h3>{value.name}</h3>
-                        </div>
-                    </li>
-                ))}
+                    {Object.values(categories).map((value) => (
+                        <li key={value} className="list-group-item">
+                            <div>
+                                <Link to={`/${value.name}`} exact activeClassName='active'>
+                                    {value.name}
+                                </Link>
+                            </div>
+                        </li>
+                    ))}
                 </ul>
             </div>
         )
