@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import PostList from './PostList'
 import Categories from './Categories'
+import Post from './Post'
 
 
 class App extends Component {
@@ -24,6 +25,14 @@ class App extends Component {
             <Route exact path='/' component={PostList} />
             <Route exact path='/categories' component={Categories} />
             <Route exact path='/:category' component={PostList} />
+            <Route exact
+              path="/:category/:post_id"
+              render={({ match }) =>
+                <Post
+                  post_id={match.params.post_id}
+                  categoryUrl={match.params.category}
+                />}
+            />
           </Switch>
         </div>
       </Router>
