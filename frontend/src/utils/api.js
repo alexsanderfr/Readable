@@ -57,7 +57,6 @@ export const disablePost = (id) =>
 export const getCommentsByParent = (postId) =>
     fetch(`${api}/posts/${postId}/comments`, { headers })
         .then(res => res.json())
-        .then(data => data.json());
 
 export const addComment = (comment) =>
     fetch(`${api}/comments`, {
