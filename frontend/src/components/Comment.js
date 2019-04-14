@@ -24,10 +24,8 @@ class Comment extends Component {
 }
 
 function mapStateToProps({ comments }, props) {
-    const comment_id = props.comment_id
-    const comment = objectToArray(comments).filter((comment) => comment.parent_id === comment_id)[0]
-    console.log(comment)
-
+    const comment_id = props.id
+    const comment = objectToArray(comments).filter((comment) => comment.id === comment_id)[0]
     return {
         comment: comment
     }

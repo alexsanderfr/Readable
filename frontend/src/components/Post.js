@@ -14,8 +14,7 @@ class Post extends Component {
 
     render() {
         const post = this.props.post
-        const comments = this.props.comments;
-        console.log(comments)
+        const comments = this.props.comments
         return (
             post === undefined ? <div></div> : <div>
                 <div className="container">
@@ -49,7 +48,7 @@ function mapStateToProps({ posts, comments }, props) {
     const post = objectToArray(posts).filter((post) => post.id === post_id)[0]
     return {
         post: post,
-        comments: objectToArray(comments)
+        comments: objectToArray(comments).filter((comment) => comment.parentId === post_id)
     }
 }
 
