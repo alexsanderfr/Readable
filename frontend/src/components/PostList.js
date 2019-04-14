@@ -22,7 +22,7 @@ class PostList extends Component {
         return (
             <div>
                 <div className='btn-container' align='right'>
-                    <button className='btn' onClick={this.sortByScore}>Sort by {sortBy === 'score' ? 'date' : 'score'}</button>
+                    <button className="btn btn-primary" onClick={this.sortByScore}>Sort by {sortBy === 'score' ? 'date' : 'score'}</button>
                 </div>
                 <ul className="list-group">
                     {posts.map((post) => (
