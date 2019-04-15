@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PostListing from "./PostListing"
+import PostPreview from "./PostPreview"
 import { objectToArray } from '../utils/helpers'
 
 class PostList extends Component {
@@ -27,7 +27,7 @@ class PostList extends Component {
                 <ul className="list-group">
                     {posts.map((post) => (
                         <li key={post.id} className="list-group-item">
-                            <PostListing id={post.id} />
+                            <PostPreview id={post.id} />
                         </li>
                     ))}
                 </ul>
