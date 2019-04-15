@@ -23,3 +23,8 @@
 .btn-container {
   margin: 12px;
 }
+
+.error {
+  margin: 12px;
+  text-align: center
+}

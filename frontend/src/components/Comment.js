@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTimestamp } from '../utils/helpers'
-import { MdThumbUp, MdThumbDown } from 'react-icons/md'
+import { MdThumbUp, MdThumbDown, MdDelete } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
-import { handleVoteComment } from '../actions/comments'
+import { handleVoteComment, handleDisableComment } from '../actions/comments'
 
 class Comment extends Component {
 
@@ -21,9 +21,23 @@ class Comment extends Component {
         comment.voteScore = comment.voteScore - 1;
     }
 
+    onClickDelete = (e) => {
+        e.preventDefault()
+        const { comment, dispatch } = this.props
+        dispatch(handleDisableComment(comment.id))
+        comment.deleted = true
+    }
+
 
     render() {
         const comment = this.props.comment
+
+        if (comment.deleted) {
+            return (
+                <div></div>
+            )
+        }
+
         return (
             comment === undefined ? <div></div> : <div className="container">
                 <div className="content">
@@ -34,6 +48,7 @@ class Comment extends Component {
                     <h4>{`${comment.voteScore} votes`}</h4>
                     <MdThumbUp className='like-icons' onClick={this.onClickLike} />
                     <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
+                    <MdDelete className='like-icons' onClick={this.onClickDelete} />
                 </div>
             </div>
         )

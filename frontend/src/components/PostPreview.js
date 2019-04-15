@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTimestamp } from '../utils/helpers'
-import { MdThumbUp, MdThumbDown } from 'react-icons/md'
+import { MdThumbUp, MdThumbDown, MdDelete } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
 import { Link } from 'react-router-dom'
-import { handleVotePost } from '../actions/posts';
+import { handleVotePost,handleDisablePost } from '../actions/posts';
 
 class PostPreview extends Component {
 
@@ -21,9 +21,22 @@ class PostPreview extends Component {
         dispatch(handleVotePost(post.id, "downVote"))
         post.voteScore = post.voteScore - 1;
     }
-    
+
+    onClickDelete = (e) => {
+        e.preventDefault()
+        const { post, dispatch } = this.props
+        dispatch(handleDisablePost(post.id))
+        post.deleted = true
+    }
+
     render() {
         const post = this.props.post
+
+        if (post.deleted) {
+            return (
+                <div></div>
+            )
+        }
         return (
             <div className="container">
                 <div className="content">
@@ -35,6 +48,7 @@ class PostPreview extends Component {
                     <h4>{`${post.voteScore} votes`}</h4>
                     <MdThumbUp className='like-icons' onClick={this.onClickLike} />
                     <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
+                    <MdDelete className='like-icons' onClick={this.onClickDelete} />
                 </div>
             </div>
         )

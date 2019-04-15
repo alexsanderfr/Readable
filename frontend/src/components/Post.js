@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTimestamp } from '../utils/helpers'
-import { MdThumbUp, MdThumbDown } from 'react-icons/md'
+import { MdThumbUp, MdThumbDown, MdDelete } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
 import { handleReceiveCommentsByParent } from '../actions/comments';
 import Comment from './Comment'
-import { handleVotePost } from '../actions/posts';
+import { handleVotePost, handleDisablePost } from '../actions/posts';
+import { Redirect } from 'react-router-dom'
 
 
 class Post extends Component {
+
+    state = {
+        toHome: false
+    }
 
     componentDidMount() {
         this.props.dispatch(handleReceiveCommentsByParent(this.props.post_id))
@@ -28,11 +33,26 @@ class Post extends Component {
         post.voteScore = post.voteScore - 1;
     }
 
+    onClickDelete = (e) => {
+        e.preventDefault()
+        const { post, dispatch } = this.props
+        dispatch(handleDisablePost(post.id))
+        post.deleted = true
+        this.setState(() => ({
+            toHome: true
+        }))
+    }
+
     render() {
         const post = this.props.post
         const comments = this.props.comments
+
+        if (this.state.toHome === true) {
+            return <Redirect to='/' />
+        }
+
         return (
-            post === undefined ? <div></div> : <div>
+            post === undefined ? <div><h1 className="error">404 post not found</h1></div> : <div>
                 <div className="container">
                     <div className="content">
                         <h3>{post.title}</h3>
@@ -44,6 +64,7 @@ class Post extends Component {
                         <h4>{`${post.voteScore} votes`}</h4>
                         <MdThumbUp className='like-icons' onClick={this.onClickLike} />
                         <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
+                        <MdDelete className='like-icons' onClick={this.onClickDelete} />
                     </div>
                 </div>
                 <div>
@@ -61,7 +82,8 @@ class Post extends Component {
 
 function mapStateToProps({ posts, comments }, props) {
     const post_id = props.post_id
-    const post = objectToArray(posts).filter((post) => post.id === post_id)[0]
+    const filteredArray = objectToArray(posts).filter((post) => post.id === post_id)
+    let post = filteredArray === [] ? undefined : filteredArray[0]
     return {
         post: post,
         comments: objectToArray(comments).filter((comment) => comment.parentId === post_id)
