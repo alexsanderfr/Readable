@@ -9,20 +9,32 @@ class PostList extends Component {
         sortBy: 'score'
     }
 
-    sortByScore = (e) => {
+    onClickSort = (e) => {
         e.preventDefault()
         const { sortBy } = this.state;
         this.setState(() => ({ sortBy: sortBy === 'score' ? 'date' : 'score' }))
     }
 
     render() {
-        const posts = this.props.posts;
+        let posts = this.props.posts;
         const { sortBy } = this.state;
+
+        switch (sortBy) {
+            case 'score':
+                posts = posts.sort((a,b) => b.voteScore - a.voteScore)
+                break
+            case 'date':
+                posts = posts.sort((a,b) => b.timestamp - a.timestamp)
+                break
+            default:
+                break
+
+        }
 
         return (
             <div>
                 <div className='btn-container' align='right'>
-                    <button className="btn btn-primary" onClick={this.sortByScore}>Sort by {sortBy === 'score' ? 'date' : 'score'}</button>
+                    <button className="btn btn-primary" onClick={this.onClickSort}>Sort by {sortBy === 'score' ? 'date' : 'score'}</button>
                 </div>
                 <ul className="list-group">
                     {posts.map((post) => (
