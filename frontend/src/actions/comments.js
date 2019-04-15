@@ -35,7 +35,7 @@ export function handleReceiveCommentsByParent(parentId) {
     return (dispatch) => {
         return getCommentsByParent(parentId)
             .then((comments) => {
-                dispatch(receiveCommentAction(comments))
+                dispatch(receiveCommentsByParentAction(comments))
             })
     }
 }

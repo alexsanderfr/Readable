@@ -4,8 +4,24 @@ import { formatTimestamp } from '../utils/helpers'
 import { MdThumbUp, MdThumbDown } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
 import { Link } from 'react-router-dom'
+import { handleVotePost } from '../actions/posts';
 
 class PostPreview extends Component {
+
+    onClickLike = (e) => {
+        e.preventDefault()
+        const { post, dispatch } = this.props
+        dispatch(handleVotePost(post.id, "upVote"))
+        post.voteScore = post.voteScore + 1;
+    }
+
+    onClickDislike = (e) => {
+        e.preventDefault()
+        const { post, dispatch } = this.props
+        dispatch(handleVotePost(post.id, "downVote"))
+        post.voteScore = post.voteScore - 1;
+    }
+    
     render() {
         const post = this.props.post
         return (
@@ -17,8 +33,8 @@ class PostPreview extends Component {
                 </div>
                 <div className="vote-buttons" align="center">
                     <h4>{`${post.voteScore} votes`}</h4>
-                    <MdThumbUp className='like-icons' />
-                    <MdThumbDown className='like-icons' />
+                    <MdThumbUp className='like-icons' onClick={this.onClickLike} />
+                    <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
                 </div>
             </div>
         )

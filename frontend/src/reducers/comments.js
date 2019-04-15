@@ -8,12 +8,16 @@ export default function posts(state = {}, action) {
         case RECEIVE_COMMENT:
             return {
                 ...state,
-                ...action.comment
+                [action.comment.id]: action.comment
             }
         case RECEIVE_COMMENTS_BY_PARENT:
+            let commentsObject = {}
+            action.comments.forEach(element => {
+                commentsObject[element.id] = element
+            });
             return {
                 ...state,
-                ...action.comments
+                ...commentsObject
             }
         case ADD_COMMENT:
             return {

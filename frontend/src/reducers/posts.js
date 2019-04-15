@@ -5,20 +5,28 @@ import {
 
 export default function posts(state = {}, action) {
     switch (action.type) {
-        case RECEIVE_POSTS:
+        case RECEIVE_POSTS: 
+            let postsObject = {}
+            action.posts.forEach(element => {
+                postsObject[element.id] = element
+            });
             return {
                 ...state,
-                ...action.posts
+                ...postsObject
             }
         case RECEIVE_POST:
             return {
                 ...state,
-                ...action.post
+                [action.post.id]: action.post
             }
         case RECEIVE_POSTS_BY_CATEGORY:
+            let postsByCategoryObject = {}
+            action.posts.forEach(element => {
+                postsByCategoryObject[element.id] = element
+            });
             return {
                 ...state,
-                ...action.posts
+                ...postsByCategoryObject
             }
         case ADD_POST:
             return {

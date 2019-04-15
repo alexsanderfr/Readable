@@ -38,7 +38,7 @@ export const votePost = (id, option) =>
     fetch(`${api}/posts/${id}`, {
         method: "POST",
         headers,
-        body: JSON.stringify(option)
+        body: JSON.stringify({option})
     }).then(res => res.json())
 
 export const editPost = (id, post) =>
@@ -74,7 +74,7 @@ export const voteComment = (id, option) =>
     fetch(`${api}/comments/${id}`, {
         method: "POST",
         headers,
-        body: JSON.stringify(option)
+        body: JSON.stringify({option})
     }).then(res => res.json());
 
 export const editComment = (id, comment) =>
