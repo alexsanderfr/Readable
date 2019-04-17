@@ -38,7 +38,7 @@ class Post extends Component {
         e.preventDefault()
 
         const { title, body, author } = this.state
-        const { dispatch } = this.props
+        const { category, dispatch } = this.props
 
         let post = {}
         const uuidv4 = require('uuid/v4')
@@ -47,7 +47,7 @@ class Post extends Component {
         post.timestamp = Date.now();
         post.title = title
         post.body = body
-        post.category = "redux"
+        post.category = category === undefined ? "all" : category
         dispatch(handleAddPost(post))
 
         this.setState(() => ({
@@ -68,7 +68,7 @@ class Post extends Component {
                         placeholder="Type in the post title"
                         value={title}
                         onChange={this.handleChangeTitle}
-                        className='title-textarea'
+                        className='attribute-textarea'
                     />
                     <textarea
                         placeholder="Type in the post"
@@ -80,7 +80,7 @@ class Post extends Component {
                         placeholder="Type in your name"
                         value={author}
                         onChange={this.handleChangeAuthor}
-                        className='author-textarea'
+                        className='attribute-textarea'
                     />
                     <button
                         className='btn'

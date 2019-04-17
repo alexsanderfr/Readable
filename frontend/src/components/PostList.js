@@ -22,10 +22,10 @@ class PostList extends Component {
 
         switch (sortBy) {
             case 'score':
-                posts = posts.sort((a,b) => b.voteScore - a.voteScore)
+                posts = posts.sort((a, b) => b.voteScore - a.voteScore)
                 break
             case 'date':
-                posts = posts.sort((a,b) => b.timestamp - a.timestamp)
+                posts = posts.sort((a, b) => b.timestamp - a.timestamp)
                 break
             default:
                 break
@@ -44,7 +44,7 @@ class PostList extends Component {
                         </li>
                     ))}
                 </ul>
-                <NewPost/>
+                <NewPost category={this.props.category} />
             </div>
         )
     }
@@ -54,6 +54,7 @@ class PostList extends Component {
 function mapStateToProps({ posts }, props) {
     const { category } = props.match.params
     return {
+        category: category,
         posts: category === undefined ? objectToArray(posts) : objectToArray(posts).filter((post) => (post.category === category))
     }
 }
