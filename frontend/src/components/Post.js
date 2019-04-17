@@ -7,6 +7,7 @@ import { handleReceiveCommentsByParent } from '../actions/comments';
 import Comment from './Comment'
 import { handleVotePost, handleDisablePost } from '../actions/posts';
 import { Redirect } from 'react-router-dom'
+import NewComment from './NewComment';
 
 
 class Post extends Component {
@@ -73,6 +74,9 @@ class Post extends Component {
                             <Comment id={comment.id} />
                         </li>
                     ))}
+                </div>
+                <div>
+                    <NewComment parentId={this.props.post_id}/>
                 </div>
             </div>
 

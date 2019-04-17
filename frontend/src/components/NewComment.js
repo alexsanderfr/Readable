@@ -1,21 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAddPost } from '../actions/posts'
+import { handleAddComment } from '../actions/comments'
 
 
-class NewPost extends Component {
+class NewComment extends Component {
     state = {
-        title: '',
         body: '',
         author: ''
-    }
-
-    handleChangeTitle = (e) => {
-        const title = e.target.value
-
-        this.setState(() => ({
-            title: title
-        }))
     }
 
     handleChangeBody = (e) => {
@@ -37,41 +28,33 @@ class NewPost extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { title, body, author } = this.state
-        const { category, dispatch } = this.props
+        const { body, author } = this.state
+        const { parentId, dispatch } = this.props
 
-        let post = {}
+        let comment = {}
         const uuidv4 = require('uuid/v4')
-        post.id = uuidv4()
-        post.author = author
-        post.timestamp = Date.now();
-        post.title = title
-        post.body = body
-        post.category = category === undefined ? "all" : category
-        dispatch(handleAddPost(post))
+        comment.id = uuidv4()
+        comment.author = author
+        comment.timestamp = Date.now();
+        comment.body = body
+        comment.parentId = parentId
+        dispatch(handleAddComment(comment))
 
         this.setState(() => ({
-            title: '',
             body: '',
             author: ''
         }))
     }
 
     render() {
-        const { title, body, author } = this.state
+        const { body, author } = this.state
 
         return (
             <div>
-                <h3 align='center'>Compose new Post</h3>
-                <form className='new-post' onSubmit={this.handleSubmit}>
+                <h3 align='center'>Compose new Comment</h3>
+                <form className='new-comment' onSubmit={this.handleSubmit}>
                     <textarea
-                        placeholder="Type in the post title"
-                        value={title}
-                        onChange={this.handleChangeTitle}
-                        className='attribute-textarea'
-                    />
-                    <textarea
-                        placeholder="Type in the post"
+                        placeholder="Type in the comment"
                         value={body}
                         onChange={this.handleChangeBody}
                         className='body-textarea'
@@ -85,7 +68,7 @@ class NewPost extends Component {
                     <button
                         className='btn'
                         type='submit'
-                        disabled={body === '' || author === '' || title === ''}>
+                        disabled={body === '' || author === ''}>
                         Submit
                 </button>
                 </form>
@@ -97,4 +80,4 @@ class NewPost extends Component {
 function mapStateToProps(state, props) {
 }
 
-export default connect(mapStateToProps)(NewPost)
+export default connect(mapStateToProps)(NewComment)
