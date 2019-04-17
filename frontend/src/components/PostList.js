@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostPreview from "./PostPreview"
 import { objectToArray } from '../utils/helpers'
+import NewPost from './NewPost';
 
 class PostList extends Component {
 
@@ -43,6 +44,7 @@ class PostList extends Component {
                         </li>
                     ))}
                 </ul>
+                <NewPost/>
             </div>
         )
     }

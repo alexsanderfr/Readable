@@ -28,3 +28,38 @@
   margin: 12px;
   text-align: center
 }
+
+.new-post {
+  width: 100%;
+  max-width: 590px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-textarea {
+  border-radius: 4px;
+  border: 1px solid #dad7d7;
+  padding: 10px;
+  font-size: 15px;
+  margin: 10px;
+  height: 50px;
+}
+
+.author-textarea {
+  border-radius: 4px;
+  border: 1px solid #dad7d7;
+  padding: 10px;
+  font-size: 15px;
+  margin: 10px;
+  height: 50px;
+}
+
+.body-textarea {
+  border-radius: 4px;
+  border: 1px solid #dad7d7;
+  padding: 10px;
+  margin: 10px;
+  font-size: 15px;
+  height: 100px;
+}

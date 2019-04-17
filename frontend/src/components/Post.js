@@ -83,7 +83,7 @@ class Post extends Component {
 function mapStateToProps({ posts, comments }, props) {
     const post_id = props.post_id
     const filteredArray = objectToArray(posts).filter((post) => post.id === post_id)
-    let post = filteredArray === [] ? undefined : filteredArray[0]
+    const post = filteredArray === [] ? undefined : filteredArray[0]
     return {
         post: post,
         comments: objectToArray(comments).filter((comment) => comment.parentId === post_id)
