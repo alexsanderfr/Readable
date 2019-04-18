@@ -59,7 +59,6 @@ class NewPost extends Component {
         post.title = title
         post.body = body
         post.category = category
-        console.log(post)
         dispatch(handleAddPost(post))
 
         this.setState(() => ({

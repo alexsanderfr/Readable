@@ -16,7 +16,7 @@
 }
 
 .like-icons {
-  font-size: 60px;
+  font-size: 40px;
   margin: 12px;
 }
 
@@ -68,4 +68,8 @@
   border: 1px solid #dad7d7;
   margin: 10px;
   font-size: 15px;
+} 
+
+.add-icon {
+  font-size: 80px;
 }

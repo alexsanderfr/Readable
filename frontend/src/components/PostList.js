@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostPreview from "./PostPreview"
 import { objectToArray } from '../utils/helpers'
-import NewPost from './NewPost';
 import { Link } from 'react-router-dom'
+import { MdAddCircle } from 'react-icons/md'
 
 class PostList extends Component {
 
@@ -45,10 +45,12 @@ class PostList extends Component {
                         </li>
                     ))}
                 </ul>
-                <div className='btn-container' align='center'>
-                    <Link to={`/new`} className="btn btn-primary">Add Post</Link>
+                <div className='btn-container' style={{position: "absolute", bottom: 0, right: 0}}>
+                    <Link to={`/new`}>
+                        <MdAddCircle className='add-icon' />
+                    </Link>
                 </div>
-            </div>
+            </div >
         )
     }
 }
