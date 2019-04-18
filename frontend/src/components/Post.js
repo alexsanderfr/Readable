@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatTimestamp } from '../utils/helpers'
-import { MdThumbUp, MdThumbDown, MdDelete } from 'react-icons/md'
+import { MdThumbUp, MdThumbDown, MdDelete, MdCreate } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
 import { handleReceiveCommentsByParent } from '../actions/comments';
 import Comment from './Comment'
@@ -67,6 +67,10 @@ class Post extends Component {
                         <MdThumbUp className='like-icons' onClick={this.onClickLike} />
                         <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
                         <MdDelete className='like-icons' onClick={this.onClickDelete} />
+                        <Link to={`${post.id}/edit`}>
+                            <MdCreate className='like-icons' />
+                        </Link>
+
                     </div>
                 </div>
                 <div>

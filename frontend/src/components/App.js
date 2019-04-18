@@ -9,6 +9,7 @@ import Categories from './Categories'
 import Post from './Post'
 import NewPost from './NewPost'
 import NewComment from './NewComment'
+import EditPost from './EditPost'
 
 class App extends Component {
   componentDidMount() {
@@ -29,6 +30,12 @@ class App extends Component {
             <Route exact path='/:category' component={PostList} />
             <Route exact path="/:category/:post_id/new" render={({ match }) =>
               <NewComment
+                post_id={match.params.post_id}
+                category={match.params.category}
+              />}
+            />
+            <Route exact path="/:category/:post_id/edit" render={({ match }) =>
+              <EditPost
                 post_id={match.params.post_id}
                 category={match.params.category}
               />}

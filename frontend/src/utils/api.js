@@ -45,6 +45,7 @@ export const editPost = (id, post) =>
         headers,
         body: JSON.stringify(post)
     }).then(res => res.json())
+    .then(data => data)
 
 export const disablePost = (id) =>
     fetch(`${api}/posts/${id}`, {
