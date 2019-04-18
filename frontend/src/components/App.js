@@ -7,6 +7,7 @@ import Nav from './Nav';
 import PostList from './PostList'
 import Categories from './Categories'
 import Post from './Post'
+import NewPost from './NewPost'
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
           <Nav />
           <Switch>
             <Route exact path='/' component={PostList} />
+            <Route exact path='/new' component={NewPost} />
             <Route exact path='/categories' component={Categories} />
             <Route exact path='/:category' component={PostList} />
             <Route exact

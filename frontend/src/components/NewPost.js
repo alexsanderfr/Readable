@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddPost } from '../actions/posts'
-
+import { objectToArray } from '../utils/helpers'
+import { Redirect } from 'react-router-dom'
 
 class NewPost extends Component {
     state = {
         title: '',
         body: '',
-        author: ''
+        author: '',
+        category: 'react',
+        toHome: false
     }
 
     handleChangeTitle = (e) => {
@@ -34,11 +37,19 @@ class NewPost extends Component {
         }))
     }
 
+    handleChangeCategory = (e) => {
+        const category = e.target.value
+
+        this.setState(() => ({
+            category: category
+        }))
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { title, body, author } = this.state
-        const { category, dispatch } = this.props
+        const { title, body, author, category } = this.state
+        const { dispatch } = this.props
 
         let post = {}
         const uuidv4 = require('uuid/v4')
@@ -47,18 +58,26 @@ class NewPost extends Component {
         post.timestamp = Date.now();
         post.title = title
         post.body = body
-        post.category = category === undefined ? "all" : category
+        post.category = category
+        console.log(post)
         dispatch(handleAddPost(post))
 
         this.setState(() => ({
             title: '',
             body: '',
-            author: ''
+            author: '',
+            toHome: true
         }))
     }
 
     render() {
-        const { title, body, author } = this.state
+        const { title, body, author, category, toHome } = this.state
+        const categories = this.props.categories
+
+        if (toHome === true) {
+            return <Redirect to='/' />
+        }
+
 
         return (
             <div>
@@ -70,6 +89,11 @@ class NewPost extends Component {
                         onChange={this.handleChangeTitle}
                         className='attribute-textarea'
                     />
+                    <select name="category" className='category-form' form="category-form" value={category} onChange={this.handleChangeCategory}>
+                        {objectToArray(categories).map((value) => (
+                            <option key={value.name}>{value.name}</option>
+                        ))}
+                    </select>
                     <textarea
                         placeholder="Type in the post"
                         value={body}
@@ -94,7 +118,10 @@ class NewPost extends Component {
     }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps({ categories }) {
+    return {
+        categories: categories
+    }
 }
 
 export default connect(mapStateToProps)(NewPost)
