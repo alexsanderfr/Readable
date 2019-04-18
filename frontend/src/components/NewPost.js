@@ -55,7 +55,7 @@ class NewPost extends Component {
         const uuidv4 = require('uuid/v4')
         post.id = uuidv4()
         post.author = author
-        post.timestamp = Date.now();
+        post.timestamp = Date.now()
         post.title = title
         post.body = body
         post.category = category

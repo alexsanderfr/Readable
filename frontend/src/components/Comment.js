@@ -13,14 +13,14 @@ class Comment extends Component {
         e.preventDefault()
         const { comment, dispatch } = this.props
         dispatch(handleVoteComment(comment.id, "upVote"))
-        comment.voteScore = comment.voteScore + 1;
+        comment.voteScore = comment.voteScore + 1
     }
 
     onClickDislike = (e) => {
         e.preventDefault()
         const { comment, dispatch } = this.props
         dispatch(handleVoteComment(comment.id, "downVote"))
-        comment.voteScore = comment.voteScore - 1;
+        comment.voteScore = comment.voteScore - 1
     }
 
     onClickDelete = (e) => {

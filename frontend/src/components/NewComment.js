@@ -36,7 +36,7 @@ class NewComment extends Component {
         const uuidv4 = require('uuid/v4')
         comment.id = uuidv4()
         comment.author = author
-        comment.timestamp = Date.now();
+        comment.timestamp = Date.now()
         comment.body = body
         comment.parentId = post_id
         dispatch(handleAddComment(comment))

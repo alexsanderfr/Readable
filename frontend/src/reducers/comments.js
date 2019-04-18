@@ -14,7 +14,7 @@ export default function posts(state = {}, action) {
             let commentsObject = {}
             action.comments.forEach(element => {
                 commentsObject[element.id] = element
-            });
+            })
             return {
                 ...state,
                 ...commentsObject

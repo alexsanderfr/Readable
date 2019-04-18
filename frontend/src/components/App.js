@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleReceivePosts } from '../actions/posts';
-import { handleReceiveCategories } from '../actions/categories';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Nav from './Nav';
+import { handleReceivePosts } from '../actions/posts'
+import { handleReceiveCategories } from '../actions/categories'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Nav from './Nav'
 import PostList from './PostList'
 import Categories from './Categories'
 import Post from './Post'
 import NewPost from './NewPost'
 import NewComment from './NewComment'
 import EditPost from './EditPost'
-import EditComment from './EditComment';
+import EditComment from './EditComment'
 
 class App extends Component {
   componentDidMount() {
@@ -58,7 +58,7 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-    );
+    )
   }
 }
 

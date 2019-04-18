@@ -9,7 +9,7 @@ export default function posts(state = {}, action) {
             let postsObject = {}
             action.posts.forEach(element => {
                 postsObject[element.id] = element
-            });
+            })
             return {
                 ...state,
                 ...postsObject
@@ -23,7 +23,7 @@ export default function posts(state = {}, action) {
             let postsByCategoryObject = {}
             action.posts.forEach(element => {
                 postsByCategoryObject[element.id] = element
-            });
+            })
             return {
                 ...state,
                 ...postsByCategoryObject

@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { formatTimestamp } from '../utils/helpers'
 import { MdThumbUp, MdThumbDown, MdDelete, MdCreate } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
-import { handleReceiveCommentsByParent } from '../actions/comments';
+import { handleReceiveCommentsByParent } from '../actions/comments'
 import Comment from './Comment'
-import { handleVotePost, handleDisablePost } from '../actions/posts';
+import { handleVotePost, handleDisablePost } from '../actions/posts'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { MdAddCircle } from 'react-icons/md'
@@ -25,14 +25,14 @@ class Post extends Component {
         e.preventDefault()
         const { post, dispatch } = this.props
         dispatch(handleVotePost(post.id, "upVote"))
-        post.voteScore = post.voteScore + 1;
+        post.voteScore = post.voteScore + 1
     }
 
     onClickDislike = (e) => {
         e.preventDefault()
         const { post, dispatch } = this.props
         dispatch(handleVotePost(post.id, "downVote"))
-        post.voteScore = post.voteScore - 1;
+        post.voteScore = post.voteScore - 1
     }
 
     onClickDelete = (e) => {

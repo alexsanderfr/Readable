@@ -13,13 +13,13 @@ class PostList extends Component {
 
     onClickSort = (e) => {
         e.preventDefault()
-        const { sortBy } = this.state;
+        const { sortBy } = this.state
         this.setState(() => ({ sortBy: sortBy === 'score' ? 'date' : 'score' }))
     }
 
     render() {
-        let posts = this.props.posts;
-        const { sortBy } = this.state;
+        let posts = this.props.posts
+        const { sortBy } = this.state
 
         switch (sortBy) {
             case 'score':
