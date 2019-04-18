@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddComment } from '../actions/comments'
-
+import { Redirect } from 'react-router-dom'
 
 class NewComment extends Component {
     state = {
         body: '',
-        author: ''
+        author: '',
+        toPost: false
     }
 
     handleChangeBody = (e) => {
@@ -29,7 +30,7 @@ class NewComment extends Component {
         e.preventDefault()
 
         const { body, author } = this.state
-        const { parentId, dispatch } = this.props
+        const { post_id, dispatch } = this.props
 
         let comment = {}
         const uuidv4 = require('uuid/v4')
@@ -37,17 +38,23 @@ class NewComment extends Component {
         comment.author = author
         comment.timestamp = Date.now();
         comment.body = body
-        comment.parentId = parentId
+        comment.parentId = post_id
         dispatch(handleAddComment(comment))
 
         this.setState(() => ({
             body: '',
-            author: ''
+            author: '',
+            toPost: true
         }))
     }
 
     render() {
-        const { body, author } = this.state
+        const { body, author, toPost } = this.state
+
+        if (toPost === true) {
+            return <Redirect to={`/${this.props.category}/${this.props.post_id}`} />
+        }
+
 
         return (
             <div>

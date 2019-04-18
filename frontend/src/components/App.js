@@ -8,7 +8,7 @@ import PostList from './PostList'
 import Categories from './Categories'
 import Post from './Post'
 import NewPost from './NewPost'
-
+import NewComment from './NewComment'
 
 class App extends Component {
   componentDidMount() {
@@ -27,12 +27,17 @@ class App extends Component {
             <Route exact path='/new' component={NewPost} />
             <Route exact path='/categories' component={Categories} />
             <Route exact path='/:category' component={PostList} />
+            <Route exact path="/:category/:post_id/new" render={({ match }) =>
+              <NewComment
+                post_id={match.params.post_id}
+                category={match.params.category}
+              />}
+            />
             <Route exact
               path="/:category/:post_id"
               render={({ match }) =>
                 <Post
                   post_id={match.params.post_id}
-                  categoryUrl={match.params.category}
                 />}
             />
           </Switch>

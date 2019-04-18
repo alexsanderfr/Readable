@@ -7,7 +7,8 @@ import { handleReceiveCommentsByParent } from '../actions/comments';
 import Comment from './Comment'
 import { handleVotePost, handleDisablePost } from '../actions/posts';
 import { Redirect } from 'react-router-dom'
-import NewComment from './NewComment';
+import { Link } from 'react-router-dom'
+import { MdAddCircle } from 'react-icons/md'
 
 
 class Post extends Component {
@@ -76,7 +77,11 @@ class Post extends Component {
                     ))}
                 </div>
                 <div>
-                    <NewComment parentId={this.props.post_id}/>
+                    <div className='btn-container' style={{ position: "absolute", bottom: 0, right: 0 }}>
+                        <Link to={`${post.id}/new`}>
+                            <MdAddCircle className='add-icon' />
+                        </Link>
+                    </div>
                 </div>
             </div>
 
@@ -90,7 +95,7 @@ function mapStateToProps({ posts, comments }, props) {
     const post = filteredArray === [] ? undefined : filteredArray[0]
     return {
         post: post,
-        comments: objectToArray(comments).filter((comment) => comment.parentId === post_id)
+        comments: objectToArray(comments).filter((comment) => comment.parentId === post_id),
     }
 }
 
