@@ -4,6 +4,8 @@ import { formatTimestamp } from '../utils/helpers'
 import { MdThumbUp, MdThumbDown, MdDelete } from 'react-icons/md'
 import { objectToArray } from '../utils/helpers'
 import { handleVoteComment, handleDisableComment } from '../actions/comments'
+import { Link } from 'react-router-dom'
+import { MdCreate } from 'react-icons/md'
 
 class Comment extends Component {
 
@@ -49,6 +51,9 @@ class Comment extends Component {
                     <MdThumbUp className='like-icons' onClick={this.onClickLike} />
                     <MdThumbDown className='like-icons' onClick={this.onClickDislike} />
                     <MdDelete className='like-icons' onClick={this.onClickDelete} />
+                    <Link to={`${comment.parentId}/${comment.id}/edit`}>
+                            <MdCreate className='like-icons' />
+                        </Link>
                 </div>
             </div>
         )

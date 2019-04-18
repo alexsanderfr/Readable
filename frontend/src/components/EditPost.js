@@ -88,7 +88,7 @@ class EditPost extends Component {
 
         return (post === undefined ? <div><h1 className="error">404 post not found</h1></div> :
             <div>
-                <h3 align='center'>Edit</h3>
+                <h3 align='center'>Edit Post</h3>
                 <form className='new-post' onSubmit={this.handleSubmit}>
                     <textarea
                         placeholder="Type in the post title"
