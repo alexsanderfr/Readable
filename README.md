@@ -8,10 +8,14 @@ This is the Readable app for Udacity's React Developer Nanodegree
 
 ### Running app
 
-```
-* Install all project dependencies with `npm install`
-* Start the development server with `npm start`
-```
+* Install and start the API server
+    - `cd api-server`
+    - `npm install`
+    - `node server`
+* Install and start the app
+    - `cd frontend`
+    - `npm install`
+    - `npm start`
 
 ## Authors
 
